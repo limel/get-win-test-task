@@ -1,0 +1,212 @@
+@import (reference) '~/styles/variables.less';
+
+.animationClick(@name, @bgColorStart,@bgColorEnd, @boxShadow, @textColor:#fff) {
+	@keyframes @name {
+		0%,
+		100% {
+			background-color: @bgColorStart;
+			box-shadow: @boxShadow;
+			color: @textColor;
+		}
+		50% {
+			box-shadow: none;
+			background-color: @bgColorEnd;
+			color: @textColor;
+		}
+	}
+}
+
+.focus(@backgroundColor, @borderColor: transparent, @textColor: #fff, @boxShadow) {
+	&:focus:not(.pending, :disabled),
+	&:focus-visible:not(.pending, :disabled) {
+		background-color: @backgroundColor;
+		box-shadow: @boxShadow;
+		color: @textColor;
+		border-color: @borderColor;
+	}
+}
+
+.hover(@backgroundColor,  @borderColor: transparent, @textColor:#fff, @boxShadow) {
+	@media (hover: hover) and (pointer: fine) {
+		&:hover:not(:disabled, .pending) {
+			background-color: @backgroundColor;
+			box-shadow: @boxShadow;
+			color: @textColor;
+			border-color: @borderColor;
+		}
+	}
+}
+
+.button {
+	display: flex;
+	align-items: center;
+	border: 2px solid var(--border-color, transparent);
+	padding: 0.5rem 1.5rem;
+	min-height: 2.5rem;
+	border-radius: 20px;
+	cursor: pointer;
+	font-family: @primary-font;
+	font-size: 0.75rem;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	transition: @transition background-color, @transition box-shadow, @transition color, @transition border-color;
+
+	.spinner {
+		margin-right: 0.5rem;
+	}
+
+	&:focus,
+	&:focus-visible {
+		outline: none;
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+		color: @grey-main;
+	}
+}
+
+.primary {
+	--background-color: @primary-color;
+	--background-color-hover: @primary-dark;
+	--background-color-active: @primary-light;
+	--text-color: #fff;
+	--text-color-hover: #fff;
+	--text-color-active: #fff;
+
+	background-color: var(--background-color);
+	color: var(--text-color);
+
+	.focus(
+		@backgroundColor: var(--background-color-hover),
+		@textColor: var(--text-color-hover),
+		@boxShadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16)
+	);
+
+	.hover(
+		@backgroundColor: var(--background-color-hover),
+		@textColor: var(--text-color-hover),
+		@boxShadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16)
+	);
+
+	&.clicked:not(.pending) {
+		animation: primaryClick 0.6s ease-in-out;
+	}
+
+	.animationClick(
+		primaryClick,
+		@bgColorStart: var(--background-color-hover), 
+		@bgColorEnd: var(--background-color-active), 
+		@boxShadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16)
+	);
+
+	&.pending {
+		background-color: @primary-extralight;
+		color: @grey-main;
+		cursor: wait;
+	}
+
+	&:disabled {
+		background-color: @primary-extralight;
+	}
+}
+
+.secondary {
+	--background-color: transparent;
+	--background-color-hover: @primary-dark;
+	--background-color-active: @primary-light;
+	--border-color: @primary-color;
+	--border-color-hover: transparent;
+	--border-color-active: transparent;
+	--text-color: @primary-color;
+	--text-color-hover: #fff;
+	--text-color-active: #fff;
+
+	background-color: var(--background-color);
+	border: 2px solid var(--border-color);
+	min-height: 2.5rem;
+	color: var(--text-color);
+
+	.focus(
+		@backgroundColor: var(--background-color-hover), 
+		@borderColor: var(--border-color-hover),
+		@textColor: var(--text-color-hover),
+		@boxShadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16)
+	);
+
+	.hover(
+		@backgroundColor: var(--background-color-hover), 
+		@borderColor: var(--border-color-hover),
+		@textColor: var(--text-color-hover),
+		@boxShadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16)
+	);
+
+	&.clicked:not(.pending) {
+		animation: secondaryClick 0.6s ease-in-out;
+	}
+
+	.animationClick(
+		secondaryClick, 
+		@bgColorStart: var(--background-color-hover), 
+		@bgColorEnd: var(--background-color-active),
+		@boxShadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.16)
+	);
+
+	&.pending {
+		color: @grey-main;
+		border: 1px solid @primary-extralight;
+		cursor: wait;
+	}
+
+	&:disabled {
+		border-color: @primary-extralight;
+		border-width: 1px;
+	}
+}
+
+.system {
+	--border-color: @extra-stroke;
+	--border-color-hover: @primary-dark;
+	--border-color-active: transparent;
+	--text-color: @grey-dark;
+	--text-color-hover: @grey-dark;
+	--text-color-active: @grey-dark;
+	--background-color: transparent;
+	--background-color-hover: transparent;
+	--background-color-active: @secondary-extralight;
+
+	.focus(
+		@backgroundColor: var(--background-color-hover), 
+		@borderColor: var(--border-color-hover),
+		@textColor: var(--text-color-hover),
+		@boxShadow: none
+	);
+
+	.hover(
+		@backgroundColor: var(--background-color-hover), 
+		@borderColor: var(--border-color-hover),
+		@textColor: var(--text-color-hover),
+		@boxShadow: none
+	);
+
+	border: 1px solid var(--border-color);
+	background-color: var(--background-color);
+	color: var(--text-color);
+
+	&.clicked:not(.pending) {
+		animation: systemClick 0.6s ease-in-out;
+	}
+
+	.animationClick(
+		systemClick,
+		@bgColorStart: var(--background-color-hover),
+		@bgColorEnd: var(--background-color-active),
+		@boxShadow: none,
+		@textColor: var(--text-color-active)
+	);
+
+	&:disabled {
+		color: @grey-main;
+	}
+}

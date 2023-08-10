@@ -1,0 +1,41 @@
+@import (reference) '~/styles/variables.less';
+
+.container {
+	background: @primary-gradient;
+	min-height: 100svh;
+	width: 41%;
+	padding: 92px 42px 0 64px;
+	margin: 0;
+	position: relative;
+
+	.title {
+		font-family: @primary-font;
+		font-size: 2.25rem;
+		line-height: 1;
+		font-weight: bold;
+		letter-spacing: 0.72px;
+		margin-bottom: 1.5rem;
+		margin-top: 0;
+		color: #fff;
+	}
+
+	.subtitle {
+		font-family: @primary-font;
+		font-size: 1.125rem;
+		font-style: normal;
+		font-weight: 400;
+		color: #fff;
+		line-height: 1.33;
+		max-width: 435px;
+		width: 100%;
+		margin-bottom: 4.5rem;
+	}
+
+	.illustration {
+		position: absolute;
+		width: 100%;
+		height: 37.5%;
+		bottom: 0;
+		left: 0;
+	}
+}

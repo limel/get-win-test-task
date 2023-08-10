@@ -1,0 +1,35 @@
+@import (reference) '~/styles/variables.less';
+
+.tabs {
+	width: 100%;
+	max-width: 336px;
+	margin: 92px auto 0;
+	& :global(.ant-tabs-nav-list) {
+		width: 100%;
+	}
+
+	& :global(.ant-tabs-nav) {
+		margin-bottom: 48px;
+	}
+	& :global(.ant-tabs-ink-bar) {
+		border-radius: 4px 4px 0px 0px;
+		height: 4px !important;
+		background-color: @primary-color;
+	}
+
+	& :global(.ant-tabs-tab) {
+		width: 100%;
+		justify-content: center;
+		color: @grey-dark;
+		text-align: center;
+		font-family: @primary-font;
+		font-size: 12px;
+		font-style: normal;
+		font-weight: 500;
+		line-height: 2;
+	}
+
+	& :global(.ant-tabs-tab-active) {
+		color: @primary-dark;
+	}
+}

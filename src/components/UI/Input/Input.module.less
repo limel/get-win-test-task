@@ -1,0 +1,97 @@
+@import (reference) '~/styles/variables.less';
+
+.inputContainer {
+	cursor: pointer;
+	width: 100%;
+	span {
+		color: @text-dark;
+		font-family: @primary-font;
+		font-size: 0.75rem;
+		font-style: normal;
+		font-weight: 600;
+		line-height: 2;
+	}
+	span::after {
+		content: attr(data-end);
+		color: red;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		&:hover .input:not(.readOnly) {
+			border-color: @primary-color;
+		}
+	}
+}
+
+.input {
+	color: @grey-main;
+	font-family: @primary-font;
+	font-size: 0.75rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 2;
+	border-radius: 4px;
+	padding: 0.5rem 1rem;
+	outline: 1px solid transparent;
+	transition: @transition border-color, @transition outline;
+
+	input {
+		background-color: transparent;
+		width: 100%;
+	}
+
+	&:focus:not(.readOnly),
+	&:focus-visible:not(.readOnly),
+	&:focus-within:not(.readOnly) {
+		border-color: @primary-dark;
+		outline: 1px solid @primary-dark;
+		box-shadow: none;
+		.key {
+			color: @primary-dark;
+		}
+	}
+}
+
+:global(.ant-input-affix-wrapper-focused):not(.readOnly) {
+	border-color: transparent;
+	outline: 1px solid @primary-dark;
+	box-shadow: none;
+}
+
+:global(.ant-input-affix-wrapper-disabled:hover) {
+	border-color: @extra-stroke;
+}
+
+.icon {
+	width: 1.5rem;
+	height: 1.5rem;
+	color: @grey-light;
+	transition: @transition color;
+}
+
+.readOnly {
+	background-color: @primary-extralight;
+	color: @grey-main;
+	border-color: @extra-stroke;
+
+	.icon {
+		color: @grey-main;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		&:hover {
+			border-color: @extra-stroke;
+			outline: transparent;
+			box-shadow: none;
+		}
+	}
+
+	&:focus,
+	&:focus-visible,
+	&:focus-within {
+		background-color: @primary-extralight;
+		color: @grey-main;
+		border-color: @extra-stroke;
+		box-shadow: none;
+	}
+}
