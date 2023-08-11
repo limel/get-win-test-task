@@ -6,7 +6,7 @@ const tabs = [
 	{
 		key: '1',
 		label: 'Вход',
-		content: 'enter form',
+		content: 'форма входа',
 	},
 	{
 		key: '2',
