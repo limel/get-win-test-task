@@ -22,6 +22,7 @@ const Button: React.FC<ButtonProps> = props => {
 		textActiveColor,
 		bgActiveColor,
 		disabled,
+		handleClick,
 	} = props;
 	const [clicked, setClicked] = useState(false);
 	// const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | undefined>(undefined);
@@ -55,7 +56,10 @@ const Button: React.FC<ButtonProps> = props => {
 			type={type}
 			disabled={disabled}
 			title={title}
-			onClick={() => (!pending ? setClicked(true) : null)}
+			onClick={() => {
+				handleClick();
+				!pending ? setClicked(true) : null;
+			}}
 			style={
 				{
 					'--border-color': borderColor,

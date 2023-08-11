@@ -15,5 +15,5 @@ export interface ButtonProps {
 	bgActiveColor?: string;
 	borderActiveColor?: string;
 	textActiveColor?: string;
-	onClick?: () => void;
+	handleClick?: () => void;
 }
