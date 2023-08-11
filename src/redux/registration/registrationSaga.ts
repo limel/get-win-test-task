@@ -20,15 +20,17 @@ function* handleRegistration() {
 	try {
 		yield put(registrationRequest());
 
-		// Get user data from the user slice
 		const { email, password } = yield select(state => state.user);
-		console.log(email, password);
-		// Make an API call to register the user
+
+		// @ts-ignore
 		const response = yield call(registrationApi, { email, password });
 		console.log(response);
 		yield put(registrationSuccess());
 	} catch (error) {
-		yield put(registrationFailure(error.message));
+		if (error) {
+			// @ts-ignore
+			yield put(registrationFailure(error.message as string));
+		}
 	}
 }
 

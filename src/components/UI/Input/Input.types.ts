@@ -5,5 +5,6 @@ export interface InputProps {
 	type?: 'text' | 'password' | 'email' | 'number' | 'date';
 	icons?: string[] | [];
 	readOnly?: boolean;
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	// name?: string;
 }

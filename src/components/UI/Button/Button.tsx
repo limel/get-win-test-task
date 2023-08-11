@@ -25,7 +25,6 @@ const Button: React.FC<ButtonProps> = props => {
 		handleClick,
 	} = props;
 	const [clicked, setClicked] = useState(false);
-	// const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | undefined>(undefined);
 
 	useEffect(() => {
 		let timeoutId: NodeJS.Timeout | undefined;
@@ -57,8 +56,12 @@ const Button: React.FC<ButtonProps> = props => {
 			disabled={disabled}
 			title={title}
 			onClick={() => {
-				handleClick();
-				!pending ? setClicked(true) : null;
+				if (handleClick) {
+					handleClick();
+				}
+				if (!pending) {
+					setClicked(true);
+				}
 			}}
 			style={
 				{
